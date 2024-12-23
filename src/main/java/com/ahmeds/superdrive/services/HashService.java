@@ -2,11 +2,12 @@ package com.ahmeds.superdrive.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
@@ -32,4 +33,20 @@ public class HashService {
         return Base64.getEncoder().encodeToString(hashedValue);
     }
 
+    private String getRandomSalt() {
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        return Base64.getEncoder().encodeToString(salt);
+    }
+
+    public HashingResult getHashedValue(String data) {
+        String salt = getRandomSalt();
+        String hashedValue = getHashedValue(data, salt);
+        return new HashingResult(salt, hashedValue);
+    }
+
+
+    public record HashingResult(String salt, String hashedValue) {
+    }
 }
