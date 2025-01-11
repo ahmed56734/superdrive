@@ -1,6 +1,7 @@
 package com.ahmeds.superdrive.controllers;
 
 import com.ahmeds.superdrive.models.User;
+import com.ahmeds.superdrive.services.CredentialService;
 import com.ahmeds.superdrive.services.FileService;
 import com.ahmeds.superdrive.services.NoteService;
 import com.ahmeds.superdrive.services.UserService;
@@ -16,11 +17,13 @@ public class HomeController {
     private final FileService fileService;
     private final UserService userService;
     private final NoteService noteService;
+    private final CredentialService credentialService;
 
-    public HomeController(FileService fileService, UserService userService, NoteService noteService) {
+    public HomeController(FileService fileService, UserService userService, NoteService noteService, CredentialService credentialService) {
         this.fileService = fileService;
         this.userService = userService;
         this.noteService = noteService;
+        this.credentialService = credentialService;
     }
 
     @GetMapping
@@ -28,6 +31,7 @@ public class HomeController {
         User user = userService.getUser(authentication.getName());
         model.addAttribute("files", fileService.getFilesByUserId(user.getUserid()));
         model.addAttribute("notes", noteService.getNotesByUserId(user.getUserid()));
+        model.addAttribute("credentials", credentialService.getCredentialsByUser(user.getUserid()));
         return "home";
     }
 }
