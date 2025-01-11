@@ -1,6 +1,5 @@
 package com.ahmeds.superdrive.models;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Note {
-    private int noteid;
+    private Integer noteid;
     private String notetitle;
     private String notedescription;
-    private int userid;
+    private Integer userid;
     private User user; // reference to the User object
 }
