@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    private UserMapper userMapper;
-    private HashService hashService;
+    private final UserMapper userMapper;
+    private final HashService hashService;
 
     public UserService(UserMapper userMapper, HashService hashService) {
         this.userMapper = userMapper;
         this.hashService = hashService;
-
     }
 
     public int createUser(SignupForm form) {
@@ -31,5 +30,9 @@ public class UserService {
 
     public boolean isUsernameAvailable(String username) {
         return userMapper.getUserByName(username) == null;
+    }
+
+    public User getUser(String name) {
+        return userMapper.getUserByName(name);
     }
 }
