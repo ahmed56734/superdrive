@@ -37,6 +37,7 @@ public class CredentialController {
             redirectAttributes.addFlashAttribute("error", "Error processing credential: " + e.getMessage());
         }
 
+        redirectAttributes.addFlashAttribute("activeTab", "credentials");
         return "redirect:/home";
     }
 
@@ -48,6 +49,7 @@ public class CredentialController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Error deleting credential: " + e.getMessage());
         }
+        redirectAttributes.addFlashAttribute("activeTab", "credentials");
         return "redirect:/home";
     }
 }

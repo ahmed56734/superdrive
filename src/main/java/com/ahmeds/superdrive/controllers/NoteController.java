@@ -33,6 +33,7 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
+        redirectAttributes.addFlashAttribute("activeTab", "notes");
         return "redirect:/home";
     }
 
@@ -47,6 +48,7 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
+        redirectAttributes.addFlashAttribute("activeTab", "notes");
         return "redirect:/home";
     }
 
@@ -58,6 +60,7 @@ public class NoteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Error deleting note.");
         }
+        redirectAttributes.addFlashAttribute("activeTab", "notes");
         return "redirect:/home";
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -27,11 +28,15 @@ public class HomeController {
     }
 
     @GetMapping
-    public String homeView(Authentication authentication, Model model) {
+    public String homeView(Authentication authentication, Model model, @ModelAttribute("activeTab") String activeTab) {
         User user = userService.getUser(authentication.getName());
         model.addAttribute("files", fileService.getFilesByUserId(user.getUserid()));
         model.addAttribute("notes", noteService.getNotesByUserId(user.getUserid()));
         model.addAttribute("credentials", credentialService.getCredentialsByUser(user.getUserid()));
+
+        // Set default tab if none specified
+        model.addAttribute("activeTab", activeTab != null && !activeTab.isEmpty() ? activeTab : "files");
+        
         return "home";
     }
 }
