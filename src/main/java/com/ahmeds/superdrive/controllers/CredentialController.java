@@ -22,7 +22,7 @@ public class CredentialController {
 
     @PostMapping
     public String saveCredential(Authentication authentication, @ModelAttribute Credential credential, RedirectAttributes redirectAttributes) {
-        Integer userId = userService.getUser(authentication.getName()).getUserid();
+        Integer userId = userService.getUser(authentication.getName()).getUserId();
         credential.setUserId(userId);
 
         try {

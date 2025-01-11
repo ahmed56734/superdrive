@@ -32,7 +32,7 @@ public class FileController {
                                    RedirectAttributes redirectAttributes) {
         try {
             User user = userService.getUser(authentication.getName());
-            fileService.uploadFile(file, user.getUserid());
+            fileService.uploadFile(file, user.getUserId());
             redirectAttributes.addFlashAttribute("success", "File uploaded successfully!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());

@@ -30,9 +30,9 @@ public class HomeController {
     @GetMapping
     public String homeView(Authentication authentication, Model model, @ModelAttribute("activeTab") String activeTab) {
         User user = userService.getUser(authentication.getName());
-        model.addAttribute("files", fileService.getFilesByUserId(user.getUserid()));
-        model.addAttribute("notes", noteService.getNotesByUserId(user.getUserid()));
-        model.addAttribute("credentials", credentialService.getCredentialsByUser(user.getUserid()));
+        model.addAttribute("files", fileService.getFilesByUserId(user.getUserId()));
+        model.addAttribute("notes", noteService.getNotesByUserId(user.getUserId()));
+        model.addAttribute("credentials", credentialService.getCredentialsByUser(user.getUserId()));
 
         // Set default tab if none specified
         model.addAttribute("activeTab", activeTab != null && !activeTab.isEmpty() ? activeTab : "files");

@@ -27,7 +27,7 @@ public class NoteController {
     public String createNote(Authentication authentication, Note note, RedirectAttributes redirectAttributes) {
         try {
             User user = userService.getUser(authentication.getName());
-            note.setUserid(user.getUserid());
+            note.setUserid(user.getUserId());
             noteService.createNote(note);
             redirectAttributes.addFlashAttribute("success", "Note added successfully!");
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class NoteController {
     public String updateNote(@PathVariable Integer noteId, Authentication authentication, Note note, RedirectAttributes redirectAttributes) {
         try {
             User user = userService.getUser(authentication.getName());
-            note.setUserid(user.getUserid());
+            note.setUserid(user.getUserId());
             note.setNoteid(noteId);
             noteService.updateNote(note);
             redirectAttributes.addFlashAttribute("success", "Note updated successfully!");

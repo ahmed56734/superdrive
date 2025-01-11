@@ -1,4 +1,4 @@
-package com.ahmeds.superdrive.mapper;
+package com.ahmeds.superdrive.mappers;
 
 import com.ahmeds.superdrive.models.Credential;
 import org.apache.ibatis.annotations.*;

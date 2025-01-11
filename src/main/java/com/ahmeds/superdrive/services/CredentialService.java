@@ -1,6 +1,6 @@
 package com.ahmeds.superdrive.services;
 
-import com.ahmeds.superdrive.mapper.CredentialMapper;
+import com.ahmeds.superdrive.mappers.CredentialMapper;
 import com.ahmeds.superdrive.models.Credential;
 import org.springframework.stereotype.Service;
 
