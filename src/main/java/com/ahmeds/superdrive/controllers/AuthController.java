@@ -42,11 +42,10 @@ public class AuthController {
         }
 
         if (signupError == null) {
-            model.addAttribute("signupSuccess", true);
-        } else {
-            model.addAttribute("signupError", signupError);
+            return "redirect:/login?signupSuccess";
         }
 
+        model.addAttribute("signupError", signupError);
         return "signup";
     }
 }

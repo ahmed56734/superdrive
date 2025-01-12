@@ -27,8 +27,25 @@ public class SecurityConfig {
                     form.defaultSuccessUrl("/home", true);
                 })
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/signup", "/css/**", "/js/**").permitAll();
+                    registry.requestMatchers("/signup", "/login", "/css/**", "/js/**").permitAll();
                     registry.anyRequest().authenticated();
+                })
+                .exceptionHandling(exception -> {
+                    exception.authenticationEntryPoint((request, response, authException) -> {
+                        // Avoid redirect loop for the /login endpoint
+                        if (request.getRequestURI().equals("/login")) {
+                            response.sendRedirect("/login");
+                            return;
+                        }
+
+                        // Redirect to /login with original query parameters
+                        String queryString = request.getQueryString();
+                        String targetUrl = "/login";
+                        if (queryString != null) {
+                            targetUrl += "?" + queryString;
+                        }
+                        response.sendRedirect(targetUrl);
+                    });
                 })
                 .authenticationProvider(authenticationService)
                 .build();

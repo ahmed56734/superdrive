@@ -35,4 +35,8 @@ public class UserService {
     public User getUser(String name) {
         return userMapper.getUserByName(name);
     }
+
+    public int deleteTestUsers() {
+        return userMapper.deleteTestUsers();
+    }
 }
