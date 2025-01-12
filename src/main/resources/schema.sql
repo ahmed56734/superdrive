@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS NOTES
     notetitle       VARCHAR(20),
     notedescription VARCHAR(1000),
     userid          INT,
-    foreign key (userid) references USERS (userid)
+    foreign key (userid) references USERS (userid) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS FILES
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS FILES
     filesize VARCHAR,
     userid   INT,
     filedata BYTEA,
-    foreign key (userid) references USERS (userid)
+    foreign key (userid) references USERS (userid) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS CREDENTIALS
@@ -36,5 +36,5 @@ CREATE TABLE IF NOT EXISTS CREDENTIALS
     key          VARCHAR,
     password     VARCHAR,
     userid       INT,
-    foreign key (userid) references USERS (userid)
+    foreign key (userid) references USERS (userid) ON DELETE CASCADE
 );
